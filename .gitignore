@@ -1,0 +1,14 @@
+### Java template
+*.class
+.classpath
+.project
+.settings/
+
+hs_err_pid*
+
+.gradle/
+build/
+/bin/
+.idea/
+*.iml
+*.ipr
