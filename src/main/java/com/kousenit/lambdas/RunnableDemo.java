@@ -3,7 +3,7 @@ package com.kousenit.lambdas;
 public class RunnableDemo {
     public static void main(String[] args) {
         // Java 7 syntax
-        new Thread(new Runnable() {
+        new Thread(new Runnable() {  // anonymous inner class
             @Override
             public void run() {
                 System.out.println("Inside an anonymous inner class");

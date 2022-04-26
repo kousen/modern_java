@@ -23,7 +23,7 @@ String jqwikVersion = '1.6.5'
 String junitVersion = '5.8.2'
 String mockitoVersion = '4.5.1'
 String moshiVersion = '1.13.0'
-String wiremockversion = '2.33.0'
+String wiremockversion = '2.33.1'
 
 dependencies {
     // JSON parsers
