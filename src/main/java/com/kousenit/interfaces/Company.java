@@ -1,7 +1,7 @@
 package com.kousenit.interfaces;
 
 public interface Company {
-    default String getName() {
+     default String getName() {
         return "Initech";
     }
 

@@ -1,6 +1,5 @@
 package com.kousenit.streams;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -17,7 +16,7 @@ public class FlatMapDemo {
         ivanova.addOrder(new Order(4))
                 .addOrder(new Order(5));
 
-        List<Customer> customers = Arrays.asList(sheridan, ivanova, garibaldi);
+        List<Customer> customers = List.of(sheridan, ivanova, garibaldi);
 
         // map for 1-1 customer to name --> Stream<String>
         customers.stream()
