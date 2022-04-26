@@ -11,7 +11,7 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SuppressWarnings({"Convert2MethodRef", "ConstantConditions", "Convert2Lambda", "Anonymous2MethodRef"})
+@SuppressWarnings({"ConstantConditions", "Convert2Lambda", "Anonymous2MethodRef"})
 public class FileFilterTest {
     private final File root = new File("src/main/java/com/kousenit");
 
@@ -37,7 +37,7 @@ public class FileFilterTest {
 
     @Test
     void listDirectories_expressionLambda() {
-        File[] directories = root.listFiles(pathname -> pathname.isDirectory());
+        File[] directories = root.listFiles(File::isDirectory);
         assertEquals(27, directories.length);
     }
 
@@ -60,7 +60,6 @@ public class FileFilterTest {
     }
 
     // Test using FilenameFilter for Java source files (end with ".java")
-
     @Test
     void javaSrcFiles_filenamefilter() {
         FilenameFilter filter = (dir, name) -> name.endsWith(".java");
