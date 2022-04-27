@@ -1,6 +1,5 @@
 package com.kousenit.streams;
 
-import com.google.common.cache.RemovalListener;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
