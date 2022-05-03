@@ -9,6 +9,14 @@ public class Person {
         this.name = name;
     }
 
+    public Person(String... names) {
+        name = String.join(" ", names);
+    }
+
+    public Person(Person other) {
+        name = other.name;
+    }
+
     public String getName() {
         return name;
     }
