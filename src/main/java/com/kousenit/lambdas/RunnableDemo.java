@@ -1,7 +1,16 @@
 package com.kousenit.lambdas;
 
+class MyRunnable implements Runnable {
+    @Override
+    public void run() {
+        System.out.println("Inside MyRunnable");
+    }
+}
+
 public class RunnableDemo {
     public static void main(String[] args) {
+        new Thread(new MyRunnable()).start();
+
         // Java 7 syntax
         new Thread(new Runnable() {  // anonymous inner class
             @Override
