@@ -40,7 +40,7 @@ class DaysInMonthTest {
     }
 
     @ParameterizedTest(name = "Checking days in {0}")
-    @EnumSource(Month.class)
+    @EnumSource(value = Month.class)
     void daysIn2022Exhaustive(Month month) {
         int days = DaysInMonth.getDays(month, 2022);
         switch (month) {

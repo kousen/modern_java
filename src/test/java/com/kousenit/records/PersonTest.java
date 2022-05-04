@@ -1,6 +1,5 @@
 package com.kousenit.records;
 
-import com.kousenit.records.Person;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
