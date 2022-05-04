@@ -113,5 +113,4 @@ public class StringExercises {
                 .filter(nullFilter.and(evenFilter))
                 .forEach(consolePrint.andThen(consoleLog));
     }
-
 }

@@ -16,7 +16,10 @@ public class SumBigDecimals {
     public BigDecimal sumFirstN_usingReduce(int n) {
         return Stream.iterate(BigDecimal.ONE, bd -> bd.add(BigDecimal.ONE))
                 .limit(n)
-                .reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
+                .reduce((accumulator, element) -> {
+                    System.out.println("acc = " + accumulator + ", e = " + element);
+                    return accumulator.add(element);
+                }).orElse(BigDecimal.ZERO);
     }
 
     // Off by one error, because 1 is never doubled
