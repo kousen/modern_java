@@ -2,10 +2,11 @@ package com.kousenit.streams;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @SuppressWarnings("NewClassNamingConvention")
 public class StringExercises {
@@ -24,6 +25,7 @@ public class StringExercises {
         System.out.println(strings);
     }
 
+    @SuppressWarnings("ComparatorCombinators")
     @Test
     public void stringLengthSort_lambda() {
         // Use lambda for the Comparator (reverse sort)
@@ -72,12 +74,44 @@ public class StringExercises {
     public void demoCollectors() {
         // Get only strings of even length
         // Add them to a LinkedList
+        List<String> evens = strings.stream()
+                .filter(s -> s.length() % 2 == 0)
+                .collect(Collectors.toCollection(LinkedList::new));
+        // .collect(Collectors.toCollection(() -> new ArrayList<>(10)));
+        System.out.println(evens);
+        // assertTrue(evens instanceof LinkedList<String>);
 
         // Add the strings to a map of string to length
+        Map<String, Integer> map = strings.stream()
+                // .collect(Collectors.toMap(Function.identity(), String::length));
+                .collect(Collectors.toMap(s -> s, String::length));
+        System.out.println(map);
 
         // Filter out nulls, then print even-length strings
+        List<String> stringsWithNulls = Arrays.asList(null, "this", null, "is", "a",
+                null, "list", null, "with", "nulls");
+        List<String> evenLengthStrings = stringsWithNulls.stream()
+                //.filter(s -> s != null && s.length() % 2 == 0) // short-circuiting AND as a guard condition
+                .filter(Objects::nonNull)
+                .filter(s -> s.length() % 2 == 0)
+                .toList();
+        System.out.println(evenLengthStrings);
 
         // Combine the two predicates and use the result to print non-null, even-length strings
+        Predicate<String> nullFilter = Objects::nonNull;
+        Predicate<String> evenFilter = s -> s.length() % 2 == 0;
+        evenLengthStrings = stringsWithNulls.stream()
+                .filter(nullFilter.and(evenFilter))  // function composition
+                .toList();
+        System.out.println(evenLengthStrings);
+
+        Logger logger = Logger.getLogger(StringExercises.class.getName());
+        Consumer<String> consolePrint = System.out::println;
+        Consumer<String> consoleLog = logger::info;
+
+        stringsWithNulls.stream()
+                .filter(nullFilter.and(evenFilter))
+                .forEach(consolePrint.andThen(consoleLog));
     }
 
 }
